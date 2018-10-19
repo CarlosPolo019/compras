@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use \Session;
+use App\Cliente;
 class ClienteController extends Controller
 {
     
 
-public function postAutenticarcliente()
+public function Autenticarcliente(Request $request)
 	{
-		$login=Input::get("txtlogin");
-		$password=Input::get("txtpassword");
+		$login=$request->input("txtlogin");
+		$password=$request->input("txtpassword");
 
 		$items = Cliente::where("login","=",$login)
 		->where("password","=",$password)->get();
@@ -26,11 +27,14 @@ public function postAutenticarcliente()
 			return back()->withErrors(["loginerror"=>"Password y contraseña incorrectos"]);
 		}
 	}
+
+
 /*FUNCION PARA CERRAR SECION*/
-public function getCerrarsession(){
-	Session::forget("cliente");
-	
-	return back();
+public function Cerrarsession(Request $request){
+$request->session()->forget('cliente');
+
+  
+	return redirect('/home');
 	}
 
 

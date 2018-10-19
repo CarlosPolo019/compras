@@ -12,7 +12,7 @@ function CargarCarrito()
             $.ajax({
                 dataType: "json",
                 method:"GET",
-                url: "/carrito/obtenercarrito"
+                url: "carrito/obtenercarrito"
                 })
             .done(function( carrito ){
                 console.log(carrito);
@@ -28,7 +28,7 @@ function CargarCarrito()
                      
 
                     html_fila="<tr>";
-                    html_fila+="<td><img height='40px' src='"+producto.ruta_imagen+"'></td>";
+                    html_fila+="<td><img height='40px' src='/compras/public"+producto.ruta_imagen+"'></td>";
                     html_fila+="<td>"+producto.nombre+"</td>";
                     html_fila+="<td><input type='number' value='"+producto.cantidad+"' onchange='ModificarProductoCarrito("+producto.id+",this)'></td>";
                     html_fila+="<td>"+producto.precio+"</td>";
@@ -54,6 +54,7 @@ function CargarCarrito()
 
             });   
 }
+
 function ModificarProductoCarrito(idproducto,obj)
 {
     console.log(obj.value);
@@ -63,7 +64,7 @@ function ModificarProductoCarrito(idproducto,obj)
             $.ajax({
                 dataType: "json",
                 method:"GET",
-                url: "/carrito/modificarproducto/"+idproducto+"/"+obj.value
+                url: "carrito/modificarproducto/"+idproducto+"/"+obj.value
                 }) 
              .done(function(){
                 console.log("Productoeliminafdo");
@@ -83,7 +84,7 @@ function EliminarProductoCarrito(idproducto)
             $.ajax({
                 dataType: "json",
                 method:"GET",
-                url: "/carrito/eliminarproducto/"+idproducto
+                url: "carrito/eliminarproducto/"+idproducto
                 }) 
              .done(function(){
                 console.log("Productoeliminafdo");
@@ -107,7 +108,7 @@ function CrearBotonPayu()
      $.ajax({
                 dataType: "json",
                 method:"GET",
-                url: "/pagos/obtenerinformacionpago/"+montoPago
+                url: "pagos/obtenerinformacionpago/"+montoPago
                 })
             .done(function( infopago ){
 

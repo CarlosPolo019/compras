@@ -63,17 +63,17 @@ class CarritoController extends Controller
 
 	 	Session::put("carrito",json_encode($carrito));
 
-	 	return json_encode($carrito);
+	 	//return json_encode($carrito);
 	 	/*Pruba rapida
 	 	return json_encode($carrito);*/
 
 	 	//return view('carrito.carrito')->with("carrito",$carrito);
-	 	//return view('carrito.carrito');
-	 }
+	 	return redirect('carrito');
+}
 
 
 	 public function Obtenercarrito()
-	 {
+{
 	 	/* para Carrito vacio*/
 	 	$carrito=new  stdClass();
 	 	$carrito->total=0;
@@ -84,8 +84,9 @@ class CarritoController extends Controller
 	 		$carrito = json_decode(Session::get("carrito"));
 		
 		return json_encode($carrito);
-	 }
-	 public function getLimpiarcarrito()
+}
+
+	 public function Limpiarcarrito()
 	 {
 	 	/* para Carrito vacio*/
 	 	$carrito=new  stdClass();
@@ -95,14 +96,14 @@ class CarritoController extends Controller
 	 }
 
 	 public function Index()
-	 {
+{
 	 	return view('carrito.carrito');
-	 }
+}
 
 
 
 	  public function postGuardarpago()
-	  {
+{
 	  	$pago = new Pago();
 
 	  	$pago->idtransaccion=$_POST["idtransaccion"];
@@ -144,7 +145,7 @@ class CarritoController extends Controller
 	 	Session::put("carrito",json_encode($carrito));
 	  }
 
-	  public function getModificarproducto($idproducto, $cantidad)
+	  public function Modificarproducto($idproducto, $cantidad)
 	  {
 	 	$carrito=new  stdClass();
 	 	$carrito->total=0;
@@ -193,7 +194,7 @@ class CarritoController extends Controller
 	  	return  $miscompras;
 	  	//return View::make('carrito.miscompras');
 	  }
-	  public function getEliminarproducto($idproducto)
+	  public function Eliminarproducto($idproducto)
 	  {
 	 	$carrito=new  stdClass();
 	 	$carrito->total=0;

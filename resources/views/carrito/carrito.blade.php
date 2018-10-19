@@ -33,7 +33,7 @@
 
 	<div  class="row">
 
-	<h2>Total: S/. <span id="ltotal"></span>
+	<h2>Total: COP/. <span id="ltotal"></span>
 	<input type="hidden" name="" id="htotal" value="">
 
 	<div id="idPayuButtonContainer">

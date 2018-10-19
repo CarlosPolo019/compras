@@ -23,23 +23,16 @@
 		
 	</thead>
 
+@foreach ($miscompras as $miscomprass)
 
-<?
-	foreach ($miscompras as $miscomprass) {
-		
-?>
-
-		<tr>
-		<td><?=$miscomprass->fecha_venta?></td>
-		<td><?=$miscomprass->total?></td>
-		<td>aprobado</td>
+ 		<tr>
+		<td>{{$miscomprass->fecha_venta}}</td>
+		<td>{{$miscomprass->total}}</td>
+		<td>{{$miscomprass->estado}}</td>
 		
 		</tr>
 
-<?
-	}
-
-?>
+@endforeach
 
 
 

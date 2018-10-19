@@ -20,10 +20,10 @@
 
 		<h2><span class="fontawesome-lock"></span>Login Autenticación</h2>
 
-		<form action="/clientes/autenticarcliente" method="POST">
-
+		<form action="{{route('Autenticarcliente')}}" method="POST">
+			@csrf
 			<fieldset>
-
+				
 				<p><label for="email">Coreo Electronico</label></p>
 				<p><input name="txtlogin" type="email" id="email" value="mail@address.com" onBlur="if(this.value=='')this.value='mail@address.com'" onFocus="if(this.value=='mail@address.com')this.value=''"></p> <!-- JS because of IE support; better: placeholder="mail@address.com" -->
 

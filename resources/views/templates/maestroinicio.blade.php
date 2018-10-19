@@ -4,7 +4,7 @@
   <title></title>
       @section("tible")
       @show 
-  
+
   <link rel="stylesheet" type="text/css" href="{{asset(
   'css/bootstrap.css')}}">
   <script type="text/javascript" src="{{asset(
@@ -13,6 +13,7 @@
       @show 
 </head>
 <body>
+    
   <header>
   <section style="background: #3299f9" class="container">
     <div class="row">
@@ -22,14 +23,14 @@
         <h1 style="float: left;"></h1>
       </div>
       <div class="col-sm-3">
-        <h3>E-COMERCE</h3>
+        <h3>TIENDA ONLINE</h3>
       </div>
       <div class="col-sm-3" class="pull-right">
       <?php
           if(!Session::has('cliente'))
           {
       ?>
-      <a href="/login">Iniciar Session </a>
+      <a href="{{route('login')}}">Iniciar Session </a>
       <?php
         }
         else
@@ -37,9 +38,9 @@
           $usuario = json_decode(Session::get("cliente"));
       ?>
       
-      <label><?echo $usuario->nombres;?></label><br>
-      <a href="/compras/miscompras" title="">Mis compras</a><br>
-      <a href="/clientes/cerrarsession">Cerrar Sesion</a>
+      <label>{{$usuario->nombres}}</label><br>
+      <a href="{{route('Miscompras')}}" title="">Mis compras</a><br>
+      <a href="{{route('Cerrarsession')}}">Cerrar Sesion</a>
       
 
 

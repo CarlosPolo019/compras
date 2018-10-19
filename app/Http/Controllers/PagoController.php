@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \Session;
+use \stdClass;
 
 class PagoController extends Controller
 {
-   public function getObtenerinformacionpago($monto)
+   public function Obtenerinformacionpago($monto)
 	{
 
 		$api_key="4Vj8eK4rloUd272L48hsrarnUA";
@@ -22,14 +24,14 @@ class PagoController extends Controller
 		$info_pago=new stdClass();
 
 		$info_pago->merchantId="508029";
-		$info_pago->accountId="512323";
+		$info_pago->accountId="512321";
 		$info_pago->description="MIS VENTAS EN LINEA";
 		$info_pago->referenceCode="PAGO001";
 		$info_pago->amount=$monto;
 		$info_pago->tax="0";
 		$info_pago->taxReturnBase="0";
-		$info_pago->currency="PEN";
-		$info_pago->signature=md5($api_key."~".$info_pago->merchantId."~".$info_pago->referenceCode."~".$monto."~PEN");
+		$info_pago->currency="COP";
+		$info_pago->signature=md5($api_key."~".$info_pago->merchantId."~".$info_pago->referenceCode."~".$monto."~COP");
 		$info_pago->test="1";
 		$info_pago->buyerEmail=$email_cliente;
 		$info_pago->responseUrl="http://pagos.syslacstraining.com/pagos/respuestapagos";
@@ -41,7 +43,7 @@ class PagoController extends Controller
 
 	} 
 
-	public function getRespuestapagos()
+	public function Respuestapagos()
 	{
 
 		$transactionState = $_REQUEST['transactionState'];
