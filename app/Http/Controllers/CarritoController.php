@@ -102,49 +102,6 @@ class CarritoController extends Controller
 
 
 
-	  public function postGuardarpago()
-{
-	  	$pago = new Pago();
-
-	  	$pago->idtransaccion=$_POST["idtransaccion"];
-	  	$pago->estado=$_POST["estado"];
-	  	$pago->idclientepago=$_POST["idclientepago"];
-
-	  	$pago->save();
-
-	  	$usuario=json_decode(Session::get("cliente"));
-		$carrito=json_decode(Session::get("carrito"));
-
-	  	$venta = new Venta();
-	  	$venta->idcliente=$usuario->id;
-	  	$venta->fecha_venta=new DateTime();
-	  	$venta->idpago=$pago->id;
-	  	$venta->total=$carrito->total;
-
-	  	$venta->save();
-
-	  	
-
-	  	foreach ($carrito->productos as $itemProducto)
-	  	{
-	  		$detalleventa=new Detalleventa();
-	  		$detalleventa->idventa=$venta->id;
-	  		$detalleventa->idproducto=$itemProducto->id;
-	  		$detalleventa->cantidad=$itemProducto->cantidad;
-	  		$detalleventa->precio_venta=$itemProducto->precio;
-
-	  		$detalleventa->save();
-
-	  		
-
-	  	}
-
-	 	$carrito=new  stdClass();
-	 	$carrito->total=0;
-	 	$carrito->productos=[];
-	 	Session::put("carrito",json_encode($carrito));
-	  }
-
 	  public function Modificarproducto($idproducto, $cantidad)
 	  {
 	 	$carrito=new  stdClass();
@@ -179,21 +136,6 @@ class CarritoController extends Controller
 
 	  }
 
-
-	  public function getConfirmarpago()
-	  {
-	  	return view('carrito.confirmacionpago');
-	  }
-
-	  public function getMiscompras()
-	  {
-	  	$cliente=json_decode(Session::get("cliente"));
-		$miscompras = DB::table('ventas')
-            ->where('idcliente','=',$cliente)
-            ->get();
-	  	return  $miscompras;
-	  	//return View::make('carrito.miscompras');
-	  }
 	  public function Eliminarproducto($idproducto)
 	  {
 	 	$carrito=new  stdClass();

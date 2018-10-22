@@ -4,5 +4,5 @@
 
 	<h4 style="background: green">Se realizó exitsamente la compra</h4>
 
-	<a href="/compras/miscompras"> ver mis compras</a>
+	<a href="{{route('Miscompras')}}"> ver mis compras</a>
 @stop

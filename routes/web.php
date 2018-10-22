@@ -62,6 +62,9 @@ Route::get('pagos/respuestapagos','PagoController@Respuestapagos')->name("Respue
 Route::get('pagos/confirmacionpagos','PagoController@Confirmacionpagos')->name("Confirmacionpagos");
 
 
+//PRODUCTOS
+
+
 
 
 /*

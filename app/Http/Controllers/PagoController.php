@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \Session;
 use \stdClass;
+use App\Pago;
+use App\Detalleventa;
+use App\Venta;
+use DateTime;
 
 class PagoController extends Controller
 {
@@ -26,7 +30,7 @@ class PagoController extends Controller
 		$info_pago->merchantId="508029";
 		$info_pago->accountId="512321";
 		$info_pago->description="MIS VENTAS EN LINEA";
-		$info_pago->referenceCode="PAGO001";
+		$info_pago->referenceCode="PAGO002";
 		$info_pago->amount=$monto;
 		$info_pago->tax="0";
 		$info_pago->taxReturnBase="0";
@@ -34,8 +38,8 @@ class PagoController extends Controller
 		$info_pago->signature=md5($api_key."~".$info_pago->merchantId."~".$info_pago->referenceCode."~".$monto."~COP");
 		$info_pago->test="1";
 		$info_pago->buyerEmail=$email_cliente;
-		$info_pago->responseUrl="http://pagos.syslacstraining.com/pagos/respuestapagos";
-		$info_pago->confirmationUrl="http://pagos.syslacstraining.com/pagos/confirmacionpagos";
+		$info_pago->responseUrl="http://localhost/compras/public/pagos/respuestapagos";
+		$info_pago->confirmationUrl="http://localhost/compras/public/pagos/confirmacionpagos";
 
 
 		return  json_encode($info_pago);
@@ -103,7 +107,7 @@ class PagoController extends Controller
 	}
 
 
-	public function getConfirmacionpagos()
+	public function Confirmacionpagos()
 	{
 
 	}
